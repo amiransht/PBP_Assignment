@@ -1,62 +1,52 @@
-# Template Proyek Django PBP
+# PBP Tugas 2
 
-Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
+Nama : Amira Nisrina Nashita
 
-*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
+NPM : 2106703815
 
-## Pendahuluan
+Kelas : PBP - F
 
-Repositori ini merupakan sebuah template yang dirancang untuk membantu mahasiswa yang sedang mengambil mata kuliah Pemrograman Berbasis Platform (CSGE602022) mengetahui struktur sebuah proyek aplikasi Django serta file dan konfigurasi yang penting dalam berjalannya aplikasi. Kamu dapat dengan bebas menyalin isi dari repositori ini atau memanfaatkan repositori ini sebagai pembelajaran sekaligus awalan dalam membuat sebuah proyek Django.
 
-## Cara Menggunakan
 
-Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi:
+## LINK
 
-1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
-   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
-2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
-   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
-   berkas (_filesystem_) komputermu:
+[Link Deployment](http://tugas2-amiransht.herokuapp.com/katalog)
 
-   ```shell
-   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
-   ```
-3. Masuk ke dalam repositori yang sudah di-_clone_ dan jalankan perintah berikut
-   untuk menyalakan _virtual environment_:
+## Soal
 
-   ```shell
-   python -m venv env
-   ```
-4. Nyalakan environment dengan perintah berikut:
+1. **Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut**
+   **kaitan antara urls.py, views.py, models.py, dan berkas html;**
 
-   ```shell
-   # Windows
-   .\env\Scripts\activate
-   # Linux/Unix, e.g. Ubuntu, MacOS
-   source env/bin/activate
-   ```
-5. Install dependencies yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut:
+   ![Bagan](assets/images/bagan.jpeg)
 
-   ```shell
-   pip install -r requirements.txt
-   ```
+   1) Client akan melakukan request ke sistem dengan cara mengakses URL yang tersedia, 
+      melalui framework Django untuk masuk ke environment 
+   2) Jika URL tersedia pada urls.py, urls.py akan melakukan routing dan mapping kepada views.py. 
+      Argumen urls.py nantinya akan diekstraksi dan dikirim ke views.py
+   3) Dalam views.py, terdapat fungsi yang terkait dengan template html dan models.py. 
+      Objek-objek akan dipanggil melalui models.py ke views.py. Data-data objek yang telah diekstrak 
+      oleh models.py akan ditampilkan oleh fungsi dalam views.py menggunakan template html. 
+   4) Ketika file html di request oleh views.py untuk menampilkan data, pemanggilan file html ini 
+      juga akan disertai dengan konteks data yang akan ditampilkan. 
+      Pastinya, variabel yang ada pada file html harus disesuaikan dengan konteks
+   5) Ketika konsep MVT dari views.py, models.py, dan file html telah dijalankan, 
+      client akan menerima respon dari request pertama berupa tambilan website
 
-6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara
-   lokal:
+2. **Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web** 
+   **berbasis Django tanpa menggunakan virtual environment?**
 
-   ```shell
-   python manage.py runserver
-   ```
-7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+   Virtual environment digunakan untuk membangun ekskulisifitas antar beberapa orang yang membangun sebuah aplikasi website. Hal ini dilakukan untuk memastikan bahwa aplikasi website yang kita buat dapat berjalan dengan baik pada sistem operasi yang sama, meskipun pada dependencies yang berbeda - beda. 
 
-## Contoh Deployment 
+3. **Jelaskan bagaimana cara kamu mengimplementasikan poin 1 sampai dengan 4 di atas.**
+   Pertama, buat fungsi bernama show_katalog dengan menggunakan variabel request yang dipanggil jika client mengakses URL. Dalam fungsi, terdapat data yang berasal dari file .json ditambah dengan nama dan npm. Funngsi ini mereturn request dari template htm yang diisi dengan data tersebut.
 
-Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
+   Daftarkan nama routing yang akan digunakan yaitu "katalog/". Daftarkan nama aplikasi pada route ini dengan nama 'katalog', selanjutnya daftarkan nama route tadi pada urlpatterns dengan memanggil fungsi katalog dari views.py untuk ditampilkan. Kemudian daftarkan nama aplikasi di program utama yaitu sttings.py dan urls.py di project_django
 
-Untuk melakukan deployment, kamu dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
+   Setelah views.py, models.py, dan urls.py telah selesai untuk dikonfigurasi, cocokkan data dalam fungsi views.py dengan template html yang tersedia. Gunakan bracker {{}} untuk memanggil data dari fungsi.
 
-Untuk contoh aplikasi Django yang sudah di deploy, dapat kamu akses di [https://django-pbp-template.herokuapp.com/](https://django-pbp-template.herokuapp.com/)
+   Setelah semua konfigurasi selesai, tambahkan file dpl.yml untuk konfigurasi Heroku dan tambahkan PROJECT_ROOT & STATIC_ROOT di settings.py project_django. Setelah selesai, deploy pada website dengan melakukan push ke repository yang telah dibuat. 
 
-## Credits
+   Buat aplikasi di Heroku dengan nama tugas2-amiransht, masukkan API Key dan nama aplikasi ke dalam secrets pada repository github.
 
-Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage). Template ini dirancang sedemikian rupa sehingga mahasiswa dapat menjadikan template ini sebagai awalan serta acuan dalam mengerjakan tugas maupun dalam berkarya.
+
+
