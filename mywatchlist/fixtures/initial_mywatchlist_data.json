@@ -1,0 +1,121 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "Mencuri Raden Saleh",
+            "rating": 4.5,
+            "release_date": "2022",
+            "review": "This movie was a lot better than I expected. At first I thought it would be a bit cheesy especially looking at the cast that consisted of young actors and actresses. But as I continued watching, it was surprisingly good with some smooth transition between one plot to another and a wonderful story telling with some excitement throughout the movie."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": true,
+            "title": "Ali & the Queens",
+            "rating": 4.0,
+            "release_date": "2021",
+            "review": "A very entertaining and emotional film, I also like the acting of Ratu 2 Quens, who are very funny and ridiculous, plus Iqbal and Aurora Ribero's acting."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": true,
+            "title": "Interstellar",
+            "rating": 4.8,
+            "release_date": "2014",
+            "review": "All is amazing. I can't describe anything. It's a film that leads you to think about yourself and your plans in your life. I am a real series/movies' lover and... This was awesome."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": true,
+            "title": "Interstellar",
+            "rating": 4.8,
+            "release_date": "2014",
+            "review": "All is amazing. I can't describe anything. It's a film that leads you to think about yourself and your plans in your life. I am a real series/movies' lover and... This was awesome."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": false,
+            "title": "Joker",
+            "rating": 4.6,
+            "release_date": "2019",
+            "review": "The movie affects you in a way that makes it physically painful to experience, but in a good way."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": true,
+            "title": "The Dark Knight",
+            "rating": 4.9,
+            "release_date": "2008",
+            "review": "It is just what you want for the best movie. Great story great acting, thrilling twist. Just watched Joker in 2019, I just has to come back and give dark knight a 10. And thanks to Heath Ledger for the exceptional performs."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": true,
+            "title": "Interstellar",
+            "rating": 4.8,
+            "release_date": "2014",
+            "review": "All is amazing. I can't describe anything. It's a film that leads you to think about yourself and your plans in your life. I am a real series/movies' lover and... This was awesome."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": true,
+            "title": "The Wolf of Wall Street",
+            "rating": 4.3,
+            "release_date": "2013",
+            "review": "the message that it brings to you that money brings power and it is not always for the best because in this movie we see the downfall of a man that will learn that actually in life the money can be a drug and will simply make you cause damage to yourself."
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": false,
+            "title": "Catch Me If You Can",
+            "rating": 4.1,
+            "release_date": "2002",
+            "review": "A very good movie. The acting in the film was average by most of the actors except for leonardo dicaprio, whose performance in the film was impressive and Tom Hanks was not a good character, the story of the film was good and interesting, I enjoyed watching it and I recommend watching it"
+        }
+    },
+
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": true,
+            "title": "Parasite",
+            "rating": 4.5,
+            "release_date": "2019",
+            "review": "As a film about a family imposing on another, and keeping dark secrets hidden beneath the surface, Parasite achieves what Jordan Peele set out to do with Us: tell a multi-layered story in a widely entertaining manner, but without sacrificing the believability of its central narrative."
+        }
+    }
+]
