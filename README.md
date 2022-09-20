@@ -42,7 +42,7 @@ Kelas : PBP - F
 
    Daftarkan nama routing yang akan digunakan yaitu "katalog/". Daftarkan nama aplikasi pada route ini dengan nama 'katalog', selanjutnya daftarkan nama route tadi pada urlpatterns dengan memanggil fungsi katalog dari views.py untuk ditampilkan. Kemudian daftarkan nama aplikasi di program utama yaitu sttings.py dan urls.py di project_django
 
-   Setelah views.py, models.py, dan urls.py telah selesai untuk dikonfigurasi, cocokkan data dalam fungsi views.py dengan template html yang tersedia. Gunakan bracker {{}} untuk memanggil data dari fungsi.
+   Setelah views.py, models.py, dan urls.py telah selesai untuk dikonfigurasi, cocokkan data dalam fungsi views.py dengan template html yang tersedia. Gunakan bracket {{}} untuk memanggil data dari fungsi.
 
    Setelah semua konfigurasi selesai, tambahkan file dpl.yml untuk konfigurasi Heroku dan tambahkan PROJECT_ROOT & STATIC_ROOT di settings.py project_django. Setelah selesai, deploy pada website dengan melakukan push ke repository yang telah dibuat. 
 
