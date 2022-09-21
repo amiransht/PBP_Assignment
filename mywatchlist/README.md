@@ -38,7 +38,7 @@ Kelas : PBP - F
 
 ## Fungsi data delivery dalam pengimplementasian sebuah platform
 
-KERJAIN NANTI
+Data delivery dapat memberikan manfaat yang signifikan ke dalam industri aplikasi seperti membuat aplikasi menjadi dinamis dan lebih interaktif, adanya data delivery membuat aplikasi-aplikasi pada sebuah platform dapat berkomunikasi serta bertukar informasi satu sama lain.
 
 ## Implementasi Poin 1-3
 
