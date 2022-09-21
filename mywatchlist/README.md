@@ -124,6 +124,11 @@ KERJAIN NANTI
 
 12. Deploy ke Heroku dengan mendaftarkan nama aplikasi heroku ke secrets github
 
+## Postman
+
+![HTML](/assets/postman_html.png)
+![JSON](/assets/postman_json.png)
+![XML](/assets/postman_xml.png)
 
     
 
