@@ -86,7 +86,8 @@ KERJAIN NANTI
     `python manage.py loaddata initial_mywatchlist_data.json`
 
 8. Dalam file `views.py` pada folder `mywatchlist` buat fungsi-fungsi untuk menampilkan data dalam format html, json, dan xml
-    ```def show_html(request):
+    ```shell
+    def show_html(request):
         .........
     def show_xml(request):
         .........
@@ -97,7 +98,7 @@ KERJAIN NANTI
 9. Membuat folder `template` di dalam folder `mywatchlist` berisi film html untuk menampilkan data
 
 10. Tambahkan path url dengan membuat file `urls.py` di dalam folder `mywatchlist` dan isi dengan path untuk melakukan routing ke fungsi-fungsi yang ada fi `views.py`
-    ```
+    ```shell
     from mywatchlist.views import show_html
     from mywatchlist.views import show_xml 
     from mywatchlist.views import show_json
@@ -113,7 +114,8 @@ KERJAIN NANTI
     ```
 
 11. Daftarkan app `mywatchlist` ke dalam url pattern pada file `urls.py` di folder `project_django`
-    ```urlpatterns = [
+    ```shell
+    urlpatterns = [
     .........,
     path('mywatchlist/', include('mywatchlist.urls')),
     .........,
