@@ -39,11 +39,11 @@
         "model": "mywatchlist.mywatchlist",
         "pk": 4,
         "fields": {
-            "watched": true,
-            "title": "Interstellar",
-            "rating": 4.8,
-            "release_date": "2014",
-            "review": "All is amazing. I can't describe anything. It's a film that leads you to think about yourself and your plans in your life. I am a real series/movies' lover and... This was awesome."
+            "watched": false,
+            "title": "Shutter Island",
+            "rating": 4.2,
+            "release_date": "2010",
+            "review": "Visually beautiful, wonderfully acted, and relentlessly gripping, Shutter Island is a brilliantly unrestrained psychological thriller that keeps its audience riveted throughout its entire duration."
         }
     },
 
