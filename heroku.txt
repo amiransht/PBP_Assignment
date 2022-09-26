@@ -1,2 +1,2 @@
 HEROKU_API_KEY: 1587d7ba-5266-42be-be5e-19ca16f761b0
-HEROKU_APP_NAME: tugas3-amiransht
+HEROKU_APP_NAME: amiransht
