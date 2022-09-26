@@ -50,7 +50,7 @@ Data delivery dapat memberikan manfaat yang signifikan ke dalam industri aplikas
     INSTALLED_APPS = [
     .....,
     .....,
-    'wishlist',
+    'mywatchlist',
     ]
     ```
 
@@ -63,7 +63,7 @@ Data delivery dapat memberikan manfaat yang signifikan ke dalam industri aplikas
 
 4. Menjalankan perintah
     ```shell
-    python manage.py makemingrations
+    python manage.py makemigrations
     python manage.py migrate
     ```
 5. Membuat data review film dalam format json pada folder `fixtures` dengan nama file `initial_mywatchlist_data.json`
