@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+
+body {
+    background-color: #aed6dc;
+}
+.header {
+    padding: 20px;
+    background-color: #edf6ff;
+    text-align: center;
+}
+.primary-heading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+    color: #17252a;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+.body {
+    background-color: #edf6ff;
+    padding-top: 16px;
+    padding: 16px;
+}
+
+.footer {
+    margin-top: 32px;
+}
+button {
+    border-radius: 5px;
+    background-color: #2b7a78;
+    border: black;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: small;
+}
+a {
+    color: #feffff;
+    font-size: small;
+    text-decoration-line: none;
+}
+
+#todos {
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    font-family:Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width:100%;
+    outline-color: black;
+}
+
+#todos tr:nth-child(even){background-color: #ffffff;}
+
+#todos tr:hover {background-color: #def2f1;}
+
+#todos td, #todos th {
+  border: none;
+  padding: 8px;
+}
+
+#todos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #2b7a78;
+  color: #ffffff;
+}
+
+p {
+    margin-top: 10px;
+    font-size: large;
+    color: #17252a;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+</style>
+
+
+<body>
+  <div style="align-items: center;"class="wrapper">
+
+    <div class="header">
+      <h2 class="primary-heading">Welcome to To Do List!</h2>
+      <p>Username: {{ username }}</p>
+    </div>
+    <div class="separator" style="color: black; margin:10px"></div>
+    <div class="body">
+    <table style="padding: 10px;" id="todos">
+      <thead>
+        <tr>
+          <th >Created On</th>
+          <th >Title</th>
+          <th >Description</th>
+          <th >Delete Task</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      {% for todo in todos %}
+        <tr>
+          <td>{{ todo.date }}</td>
+          <td>{{ todo.title }}</td>
+          <td>{{ todo.description }}</td>
+
+          <td style="text-align:center;">
+            <button><a href="{% url 'todolist:delete' todo.title %}", class="custom-delete-button">Delete</a></button>
+          </td>
+
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <button style="margin-top: 16px;"> <a href="{% url 'todolist:create' %}", class="custom-primary-button">Tambah Task</a></button>
+
+    <div class="footer">
+        <p style="font-size: medium;">last accessed on {{ last_login }}</p>
+        <button><a href="{% url 'todolist:logout' %}", class="custom-alert-button">Logout</a></button>
+    </div>
+
+    </div>
+  </div>
+</body>
+{% endblock content %}
