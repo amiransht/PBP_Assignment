@@ -80,3 +80,15 @@ def delete(request, id):
     task.delete()
 
     return redirect('todolist:show_todos')
+
+@login_required(login_url='/todolist/login/')
+def update(request, id):
+    task = Task.objects.get(
+        user = request.user,
+        id = id
+    )
+    task.is_finished = not task.is_finished
+    task.save()
+    return redirect(
+        'todolist:show_todos'
+    )

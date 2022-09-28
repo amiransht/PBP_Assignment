@@ -10,7 +10,7 @@
 
 <style>
     body {
-        background-color: #aed6dc;
+        background-color: #a7cced;
     }
     
     .header {
@@ -25,10 +25,11 @@
     }
 
     h1 {
-        text-align:center;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: "Raleway", sans-serif;
         font-size: xx-large;
-        color: #17252a;
+        color: #014f86;
+        margin-bottom: 8px;
+        margin-top: 8px;
     }
 
 </style>
@@ -42,7 +43,7 @@
     <div class="body">
         <form method="POST" >  
             {% csrf_token %}  
-            <table style="text-align: left; width: 60%; vertical-align:bottom; font-family: Arial, Helvetica, sans-serif;">  
+            <table style="text-align: left; width: 60%; vertical-align:bottom; font-family: Raleway, sans-serif;">  
                 {{ form.as_table }}  
                 <tr>  
                     <td></td>

@@ -3,7 +3,7 @@
 <style>
 
 body {
-    background-color: #aed6dc;
+    background-color: #a7cced;
 }
 .header {
     padding: 20px;
@@ -11,9 +11,9 @@ body {
     text-align: center;
 }
 .primary-heading {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Raleway", sans-serif;
     font-size: xx-large;
-    color: #17252a;
+    color: #014f86;
     margin-bottom: 8px;
     margin-top: 8px;
 }
@@ -28,17 +28,21 @@ body {
 }
 button {
     border-radius: 5px;
-    background-color: #2b7a78;
+    background-color: #168aad;
     border: black;
-    padding: 10px 16px;
+    padding: 10px 13px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: small;
+    color: black;
+}
+button:active{
+  background-color: #caf0f8;
 }
 a {
     color: #feffff;
-    font-size: small;
+    font-size: 14px;
     text-decoration-line: none;
 }
 
@@ -46,27 +50,29 @@ a {
     margin-left: auto;
     margin-right: auto;
     align-content: center;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:"Raleway", sans-serif;
     border-collapse: collapse;
     width:100%;
     outline-color: black;
 }
 
-#todos tr:nth-child(even){background-color: #ffffff;}
+#todos tr:nth-child(odd){background-color: #ffffff;}
 
-#todos tr:hover {background-color: #def2f1;}
+#todos tr:hover {background-color: #caf0f8;}
 
 #todos td, #todos th {
   border: none;
   padding: 8px;
+  text-align: center;
 }
 
 #todos th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: center;
-  background-color: #2b7a78;
+  background-color: #014f86;
   color: #ffffff;
+  font-size: medium;
+  font-weight: 600;
 }
 
 p {
@@ -74,8 +80,26 @@ p {
     font-size: large;
     color: #17252a;
     margin-bottom: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Raleway", sans-serif;
 
+}
+
+#done {
+  background-color: #dbeddb;
+  padding: 5px 31px;
+  color: #223d2e;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0px 0px 1px 0px rgb(0,0,0);
+}
+
+#inprogress {
+  background-color: #fdecc8;
+  padding: 5px 10px;
+  color: #453120;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0px 0px 1px 0px rgb(0,0,0);
 }
 </style>
 
@@ -97,7 +121,8 @@ p {
           <th >Created On</th>
           <th >Title</th>
           <th >Description</th>
-          <th >Delete Task</th>
+          <th >Status</th>
+          <th >Action</th>
         </tr>
       </thead>
 
@@ -108,7 +133,17 @@ p {
           <td>{{ todo.title }}</td>
           <td>{{ todo.description }}</td>
 
+          {% if todo.is_finished %}
+            <td>
+              <button id="done">Done</button>
+            </td>
+          {% else %}
+            <td>
+              <button id="inprogress">In Progress</button>
+            </td>
+          {% endif %}
           <td style="text-align:center;">
+            <button><a href="{% url 'todolist:update' todo.pk %}", class="custom-update-button">Update</a></button>
             <button><a href="{% url 'todolist:delete' todo.pk %}", class="custom-delete-button">Delete</a></button>
           </td>
 
@@ -118,9 +153,9 @@ p {
     </table>
     <button style="margin-top: 16px;"> <a href="{% url 'todolist:create' %}", class="custom-primary-button">Tambah Task</a></button>
 
-    <div class="footer">
+    <div class="footer" style="padding-top: 70px;">
         <p style="font-size: medium;">last accessed on {{ last_login }}</p>
-        <button><a href="{% url 'todolist:logout' %}", class="custom-alert-button">Logout</a></button>
+        <button style="background-color: #8c1c13"><a href="{% url 'todolist:logout' %}", class="custom-alert-button">Logout</a></button>
     </div>
 
     </div>
