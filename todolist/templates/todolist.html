@@ -87,7 +87,9 @@ p {
       <h2 class="primary-heading">Welcome to To Do List!</h2>
       <p>Username: {{ username }}</p>
     </div>
+
     <div class="separator" style="color: black; margin:10px"></div>
+
     <div class="body">
     <table style="padding: 10px;" id="todos">
       <thead>
@@ -107,7 +109,7 @@ p {
           <td>{{ todo.description }}</td>
 
           <td style="text-align:center;">
-            <button><a href="{% url 'todolist:delete' todo.title %}", class="custom-delete-button">Delete</a></button>
+            <button><a href="{% url 'todolist:delete' todo.pk %}", class="custom-delete-button">Delete</a></button>
           </td>
 
         </tr>
