@@ -1,66 +1,98 @@
-{% extends 'base.html' %}
-
-
-
-{% block meta %}
-<title>Registrasi Akun</title>
-{% endblock meta %}
-
-{% block content %}  
+<head>
+    <title>To Do List</title>
+    <!--INCLUDING BOOTSTRAP-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
 
 <style>
     body {
-        background-color: #a7cced;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900rem;
+        background-color: #f4f7f6;
     }
-    
     .header {
-        padding: 15px;
-        background-color: #edf6ff;
+        padding: 10px;
+        padding-left: 20px;
         text-align: center;
     }
+    .primary-heading {
+        font-size: 3rem;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+    .separator {
+    background-color: #202120;
+    }
     .body {
-        background-color: #edf6ff;
         padding-top: 16px;
         padding: 16px;
     }
+    .btn {
+        border-radius: 30px;
+        border: black;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: small;
 
-    h1 {
-        font-family: "Raleway", sans-serif;
-        font-size: xx-large;
-        color: #014f86;
-        margin-bottom: 8px;
-        margin-top: 8px;
+    }
+    button:hover{
+        background-color: #ffe1dd;
+    }
+    p {
+        color: #a4161a;
+    }
+    input:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
     }
 
 </style>
 <body>
 <div class = "Create Task">
-
-    <div class="header">
-        <h1>Create Task List</h1>  
-    </div>
-    <div class="separator" style="color: black; margin:10px"></div>
+    <div class="header pl-8">
+        <div class="d-flex">
+          <div class="mr-auto mb-auto mt-auto">
+            <h1 class="primary-heading">Create Task</h1>
+          </div>
+        </div>
+      </div>
+      <div class="separator" style="padding:1px ;" ></div>
     <div class="body">
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table style="text-align: left; width: 60%; vertical-align:bottom; font-family: Raleway, sans-serif;">  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Save"/></td>  
-                </tr>  
-            </table>  
-        </form>
+        <form method="POST" action="" class="justify-content-center">
+            {% csrf_token %}
+            <div class="form-outline mb-4">
+                <input type="text" class="form-control" name="title" placeholder="Title"/>
+            </div>
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+            <div class="form-outline mb-4">
+                <input type="text" class="form-control" name="description" placeholder="Description"/>
+            </div>
+
+            <button class="btn btn-block btn-primary" type="submit">Save</button>
+         
+        </form>
+        
+        <div>
+            {% if messages %}  
+            <ul>   
+                {% for message in messages %}  
+                    <li><p>{{ message }}</p></li>  
+                    {% endfor %}  
+            </ul>   
+            {% endif %}
+        </div>
+        
     </div>
 
 </div>  
 </body>
-{% endblock content %}
