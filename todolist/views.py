@@ -86,44 +86,34 @@ def create_ajax(request):
         user = request.user
         title = request.POST.get("title")
         description = request.POST.get("description")
-        Task.objects.create(
+        new_task = Task.objects.create(
             user=user, 
             title=title, 
             description=description
         )
-        return JsonResponse({
-            'error': False, 
-            'msg':'Successful'
-        })
+
+        serialize_json = serializers.serialize('json', [new_task])
+        print(serialize_json)
+
+        return HttpResponse(serialize_json)
+
+    return JsonResponse({'error': "Not an ajax request"}, status=404)
 
 @login_required(login_url='/todolist/login/')
 def delete(request, id):
-    # task = Task.objects.get(
-    #     user = request.user,
-    #     id = id
-    # )
-    # task.delete()
-    if request.method == 'POST':
-        task = get_object_or_404(Task, pk=id, user=request.user)
+    if request.method == 'DELETE':
+        task = Task.object.get(pk=id, user=request.user)
         task.delete()
-
-    # return redirect('todolist:show_todos')
-    return JsonResponse({'error': False})
+        return HttpResponse("Success Deleting Task")
+    
+    return JsonResponse({'error': "Not an ajax request"}, status=400)
 
 @login_required(login_url='/todolist/login/')
 def update(request, id):
-    # task = Task.objects.get(
-    #     user = request.user,
-    #     id = id
-    # )
-    # task.is_finished = not task.is_finished
-    # task.save()
-    # return redirect(
-    #     'todolist:show_todos'
-    # )
     if request.method == 'POST':
-        task = get_object_or_404(Task, pk=id, user=request.user)
+        task = Task.object.get(pk=id, user=request.user)
         task.is_finished = not task.is_finished
         task.save()
+        return HttpResponse("Success Updating Task")
 
-        return JsonResponse({'error': False})
+    return JsonResponse({'error': "Not an ajax request"}, status=400)
