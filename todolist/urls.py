@@ -10,8 +10,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
-    path('delete/<str:id>/', delete, name="delete"),
-    path('update/<str:id>/', update, name="update"),
+    path('delete/<int:id>/', delete, name="delete"),
+    path('update/<int:id>/', update, name="update"),
     path('json/', show_json, name="show_json"),
     path('add/', create_ajax, name="create_ajax"),
 ]

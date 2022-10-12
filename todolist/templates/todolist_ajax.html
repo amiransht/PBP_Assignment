@@ -1,144 +1,19 @@
-<<<<<<< HEAD
-=======
+
 {% extends 'base.html' %}
 {% block content %}
 
 <head>
     <title>TODO LIST</title>
     <!--INCLUDING BOOTSTRAP-->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/todolist/style.css">
     
 </head>
-<style>
-
-    body {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 900rem;
-        background-color: #f4f7f6;
-    }
-    .header {
-        padding: 10px;
-        padding-left: 20px;
-        text-align: center;
-    }
-    .primary-heading {
-        font-size: 3rem;
-        font-family: 'Roboto', sans-serif ;
-        font-weight: bold;
-        color: #202121;
-        margin-bottom: 8px;
-        margin-top: 8px;
-    }
-    .separator {
-      background-color: #202120;
-    }
-    .body {
-        padding-top: 16px;
-        padding: 16px;
-    }
-    
-    .footer {
-        margin-top: 32px;
-    }
-    button {
-        border-radius: 30px;
-        border: black;
-        background-color: #fdfdfc ;
-        border: 1px solid #202121;
-        padding: 5px 10px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-    }
-    button:hover{
-        background-color:#eaecef ;
-    }
-    a, a:hover {
-        color: #202121;
-        font-size: 13px;
-        text-decoration-line: none;
-    }
-    
-    .card-header {
-      background-color: #fdfdfc;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      vertical-align: middle;
-      align-content: center;
-      align-items: middle
-      
-    }
-    .card-body {
-      background-color: #fdfdfc;
-      padding-left: 36px;
-      padding-bottom: 5px;
-    }
-    
-    .card:hover {
-        transform: scale(1.01);
-        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-      }
-    p {
-        margin-top: 10px;
-        font-size: large;
-        color: #202121;
-        margin-bottom: 10px;
-        font-weight: bold;
-    
-    }
-    
-    h1, h3, h4 {
-      font-size: xx-large;
-      color: #202120;
-      margin-bottom: 8px;
-      margin-top: 8px;
-    
-    }
-    
-    h3 {
-      font-size: large;
-      font-weight: normal;
-    }
-    
-    h4 {
-      font-size: small;
-      text-align: right;
-      font-weight: normal;
-    }
-    
-    #desc {
-      position: relative;
-    }
-    #done {
-      font-size: small;
-      font-weight:bold;
-      color: #1d382a;
-      
-    }
-    
-    .badge-success {
-      background-color: #9fd3d6 ;
-    }
-    
-    #inprogress {
-      font-size: small;
-      font-weight: bold;
-      color: #5c1615;
-     
-    }
-    
-    .badge-warning {
-      background-color: #fdecc8 ;
-    }
-    .navbar-light .navbar-nav .nav-link {
-      color: #000;
-    }
- </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <body>
     <div style="align-items: center;"class="wrapper" id="header">
@@ -169,34 +44,27 @@
                 <div class="modal-content">
                   <!--Modal Header-->
                   <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Create Task</h4>
-                      <button type="button" class="close" data-ds-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                      </button>
+                    <h1 class="modal-title" id="myModalLabel">Create Task</h1>
                   </div>
                   <!--Modal Body-->
                   
                   <div class="modal-body">
                     <form method="POST" action="" id="add-task-form">
-                      {% csrf_token %}
-                        <table>
-                          <tr>
-                              <td>Title: </td>
-                              <td><input type="text" name="title" placeholder="Title" class="form-control" id="title-input"></td>
-                          </tr>
-
-                          <tr>
-                              <td>Description: </td>
-                              <td><textarea name="description" placeholder="Description" class="form-control" cols="30" rows="4"></textarea></td>
-                          </tr>
-                        </table>
+                        {% csrf_token %}
+                        <div class="form-outline mb-4">
+                          <input type="text" id="title-input" class="form-control" name="title" placeholder="Title" required />
+                        </div>
+    
+                        <div class="form-outline mb-4">
+                            <input type="text" class="form-control" name="description" placeholder="Description" required />
+                        </div>
                     </form>
                   </div>
                  
                   <!--Modal Footer-->
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="add-task">Add Task</button>
+                    <button type="button"  data-dismiss="modal">Close</button>
+                    <button type="button"  id="add-task">Add Task</button>
                   </div>
                 </div>
               </div>
@@ -221,4 +89,4 @@
   </body>
   <script src="../static/todolist/js/script.js" type="text/javascript"></script>
   {% endblock content %}
->>>>>>> 11061dd6c0643cd54272e3272ae8155072ab3000
+

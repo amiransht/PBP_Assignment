@@ -11,7 +11,6 @@ $(document).ready(function(e){
           </div>`)
         }
         else{
-          $('#todos-card').prepend('<h1 class="text-center id="task-exist-h1">Todolist</h1>');
           for (let i = 0; i < response.length; i++){
             addTaskAsync($('#todos-card'), response[i]["fields"], response[i]["pk"]);
           }
@@ -41,7 +40,6 @@ $(document).ready(function(e){
           var task_id = instance[0]["pk"];
           if ($('#no-task-div').length){
             $('#no-task-div').remove();
-            $('#todos-card').prepend('<h1 class="text-center id="task-exist-h1">Todolist</h1>');
           }
           addTaskAsync($('#todos-card'), fields, task_id);
       },
@@ -70,10 +68,10 @@ $(document).ready(function(e){
   });
   
   $('#todos-card').ready ( function () {
-    $('#todos-card').on('click', '.finish-task-ajax', function(e) {
+    $('#todos-card').on('click', '.update-task-ajax', function(e) {
       e.preventDefault()
       const id = this.id.substring(7);
-      const finishTaskURL = "update/" + id;
+      const finishTaskURL = "update/" + this.id;
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       $.ajax({
         type: 'POST',
@@ -82,8 +80,8 @@ $(document).ready(function(e){
           xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
       })
-      $(`#task-status-${id}`).text("Selesai");
-      $(`#task-status-${id}`).addClass("card-subtitle mb-2 text-success").removeClass("card-subtitle mb-2 text-danger");
+      $(`#task-status-${id}`).text("Done");
+      $(`#task-status-${id}`).addClass("text-success").removeClass("card-subtitle mb-2 text-danger");
       $(`#${this.id}`).remove();
     });
   });
@@ -109,27 +107,29 @@ $(document).ready(function(e){
         '<path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>' +
     '</svg>' +
   '</div>' : "";
-    const status_text = (!fields["is_finished"]) ? `<h6 class="card-subtitle mb-2 text-danger" id="task-status-${task_id}" style="color:red;">Belum Selesai</h6>` :  `<h6 class="card-subtitle mb-2 text-success" id="task-status-${task_id}" style="color:green;">Selesai</h6>`
-  
+    const status_text = (!fields["is_finished"]) ? `<span class="badge badge-pill badge-warning" id="task-status-${task_id}">In Progress</span>` 
+                                                  :  `<span class="badge badge-pill badge-success" id="task-status-${task_id}">Done</span>`
+    
     var html = 
-    `<div class="col-lg-4 col-md-6 col-sm-10 col-xs-1 mb-4" id="task-card-${task_id}">` +
-    '<div class="card border-light mx-auto" id="card" style="width: 22rem;">' +
-        '<div class="card-body">' +
-            '<div class="d-flex justify-content-between">' +
-                `<h5 class="card-title">${title}</h5>` +
-                '<div class="d-flex justify-content-end">' +
-                    tombol_selesai + 
-                    `<div class="delete-task-ajax" id="${task_id}">` +
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash text-muted" id="delete_task" viewBox="0 0 16 16">' +
-                            '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>' +
-                            '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>' +
-                        '</svg>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-            status_text +
-            `<p class="card-text">${description}</p>` +
-            `<p class="card-text text-muted">${date}</p>` +
+    `<div class="container" id="task-card-${task_id}">` +
+      `<div class="card" id="card" style="margin-bottom: 20px;">` +
+
+        `<div class="card-header align-middle mb-auto mt-auto">` +
+          `<div class="d-flex align-middle pb-2 pt-2">` +
+            `<div class="mr-auto p-0 mb-auto mt-auto">` + status_text + `</div>` +
+              `<div class="p-1">` + 
+                `<h4>Created On: ${date}</h4>` + 
+              `</div>` +
+            `</div>` +
+        `</div>` +
+        `<div class="card-body d-flex p-4 pr-2 pl-4">` +
+            `<div class="mr-auto justify-content-between" id="desc">`+
+              `<h1>${title}<h1><span style="font-size:14px">${description}</span>` +
+            `</div>` +
+            `<div class="mt-auto align-items-end">` +
+              `<button><a href="{% url "todolist:update" todo.id %}", class="update-task-ajax" id="update-${task_id}">Update</a></button>` +
+              `<button><a href="{% url "todolist:delete" todo.id %}", class="delete-task-ajax" id="${task_id}">Delete</a></button>`+
+            `</div>` +
         '</div>' +
       '</div>' +
     '</div>'

@@ -101,8 +101,8 @@ def create_ajax(request):
 
 @login_required(login_url='/todolist/login/')
 def delete(request, id):
-    if request.method == 'DELETE':
-        task = Task.object.get(pk=id, user=request.user)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest' and request.method == 'DELETE':
+        task = get_object_or_404(Task, pk=id, user=request.user)
         task.delete()
         return HttpResponse("Success Deleting Task")
     
@@ -110,8 +110,8 @@ def delete(request, id):
 
 @login_required(login_url='/todolist/login/')
 def update(request, id):
-    if request.method == 'POST':
-        task = Task.object.get(pk=id, user=request.user)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest' and request.method == 'POST':
+        task = get_object_or_404(Task, pk=id, user=request.user)
         task.is_finished = not task.is_finished
         task.save()
         return HttpResponse("Success Updating Task")

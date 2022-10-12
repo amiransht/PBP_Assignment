@@ -96,7 +96,7 @@ h4 {
 #desc {
   position: relative;
 }
-#done {
+.text-success {
   font-size: small;
   font-weight:bold;
   color: #1d382a;
@@ -107,7 +107,7 @@ h4 {
   background-color: #9fd3d6 ;
 }
 
-#inprogress {
+.text-danger {
   font-size: small;
   font-weight: bold;
   color: #5c1615;
