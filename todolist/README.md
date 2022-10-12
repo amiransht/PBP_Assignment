@@ -1,4 +1,4 @@
-# PBP Tugas 5
+# PBP Tugas 5 & Tugas 6
 
 Nama : Amira Nisrina Nashita
 
@@ -12,6 +12,9 @@ Kelas : PBP - F
 [To Do List](http://amiransht.herokuapp.com/todolist)
 
 
+
+
+## TUGAS 5
 ## Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
 
 ### Internal CSS
@@ -72,4 +75,24 @@ Universal selector hanya ada 1 di dalam CSS, yaitu tanda bintang “*”. Select
 3. Mengubah style dari tampilan bootstrap dengan menambahkan Internal CSS ke dalam tag `<style>`
 4. Deploy aplikasi ke Heroku
 
-  
+
+## TUGAS 6
+
+### Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+Synchronous adalah proses jalannya program secara sequential , disini yang dimaksud sequential ada berdasarkan antrian ekseskusi program. memungkinkan untuk menjalankan banyak proses secara bersamaan tanpa harus menunggu proses lain selesai.
+
+Asynchronous adalah proses jalannya program bisa dilakukan secara bersamaan tanpa harus menunggu proses antrian. Synchronous merupakan bagian dari Asynchronous (1 antrian) dimana proses akan dieksekusi secara bersamaan dan untuk hasil tergantung lama proses suatu fungsi synchronous 
+
+### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma Event-Driven Programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Event Driven Programming merupakan paradigma pemrograman di mana objek dapat berkomunikasi secara tidak langsung dengan mengirimkan pesan satu sama lain melalui perantara. Pengiriman pesan tersebut dilakukan melalui event stream. Paradigma ini bergantung pada event dengan memperhatikan operasi apa yang akan diimplementasikan dari adanya event. Penerapan paradigma dalam tugas ini terdapat pada implementasi tombol submit form penambahan task. Apabila tombol ditekan, maka akan terdapat event yang di trigger dan ditangani oleh AJAX sebagai perantara untuk mengirim data yang diisi dari form ke server, Selain itu, AJAX akan memperbarui data pada section Todo list secara asynchronous.
+
+### Jelaskan penerapan asynchronous programming pada AJAX.
+Membuat view serta url path baru yang mereturn sebuah response JSON. Implementasi asynchronous programming AJAX dalam tugas ini terdapat pada function get serta post untuk mengambil serta mengirim data JSON ke server, serta mengatur tampilan pada Todo list secara asynchronous sesuai data yang ada pada database
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+
+1. Membuat function baru yang mereturn response berupa JSON
+2. Menambahkan attribute onClick pada button create task yang diintegrasikan dengan AJAX serta modals pop up
+3. Menambahkan beberapa function javascript untuk melakukan get dan post request ke server
+4. Memindahkan component card menjadi response dari post request AJAX dengan data pada card yang didapat dari get request.
