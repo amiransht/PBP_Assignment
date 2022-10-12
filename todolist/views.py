@@ -1,15 +1,18 @@
 import datetime
-from multiprocessing import context
-from django.shortcuts import render
+from http.client import HTTPResponse
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+from django.core import serializers
 from django.shortcuts import redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from todolist.forms import TaskForm
+from django.views.decorators.csrf import csrf_exempt
 from todolist.models import Task
+from todolist.forms import TaskForm
 
 
 def register(request):
@@ -54,7 +57,12 @@ def show_todos(request):
                'last_login': request.COOKIES['last_login'],
                'todos': data,
               }
-    return render(request,'todolist.html', context)
+    return render(request,'todolist_ajax.html', context)
+
+@login_required(login_url='/todolist/login/')
+def show_json(request):
+    data = Task.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 @login_required(login_url='/todolist/login/')
 def create(request):
@@ -72,23 +80,50 @@ def create(request):
     return render(request, 'create.html',context)
 
 @login_required(login_url='/todolist/login/')
-def delete(request, id):
-    task = Task.objects.get(
-        user = request.user,
-        id = id
-    )
-    task.delete()
+@csrf_exempt
+def create_ajax(request):
+    if request.method == 'POST':
+        user = request.user
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        Task.objects.create(
+            user=user, 
+            title=title, 
+            description=description
+        )
+        return JsonResponse({
+            'error': False, 
+            'msg':'Successful'
+        })
 
-    return redirect('todolist:show_todos')
+@login_required(login_url='/todolist/login/')
+def delete(request, id):
+    # task = Task.objects.get(
+    #     user = request.user,
+    #     id = id
+    # )
+    # task.delete()
+    if request.method == 'POST':
+        task = get_object_or_404(Task, pk=id, user=request.user)
+        task.delete()
+
+    # return redirect('todolist:show_todos')
+    return JsonResponse({'error': False})
 
 @login_required(login_url='/todolist/login/')
 def update(request, id):
-    task = Task.objects.get(
-        user = request.user,
-        id = id
-    )
-    task.is_finished = not task.is_finished
-    task.save()
-    return redirect(
-        'todolist:show_todos'
-    )
+    # task = Task.objects.get(
+    #     user = request.user,
+    #     id = id
+    # )
+    # task.is_finished = not task.is_finished
+    # task.save()
+    # return redirect(
+    #     'todolist:show_todos'
+    # )
+    if request.method == 'POST':
+        task = get_object_or_404(Task, pk=id, user=request.user)
+        task.is_finished = not task.is_finished
+        task.save()
+
+        return JsonResponse({'error': False})

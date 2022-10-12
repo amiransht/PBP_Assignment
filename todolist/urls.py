@@ -1,5 +1,6 @@
+from unicodedata import name
 from django.urls import path
-from todolist.views import delete, register, login_user, logout_user, show_todos, create, delete, update
+from todolist.views import delete, register, login_user, logout_user, show_todos, create, delete, update, show_json, create_ajax
 
 app_name = 'todolist'
 
@@ -11,5 +12,6 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('delete/<str:id>/', delete, name="delete"),
     path('update/<str:id>/', update, name="update"),
-    
+    path('json/', show_json, name="show_json"),
+    path('add/', create_ajax, name="create_ajax"),
 ]
